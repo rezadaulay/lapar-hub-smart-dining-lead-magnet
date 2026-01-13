@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui;
+  --font-heading: "Montserrat", sans-serif;
+
+  --color-hungry-red: #D71921;
+  --color-hungry-dark: #1A1A1A;
+  --color-hungry-gray: #F5F5F5;
+  
+  /* Ensuring borders are visible */
+  --border-width-1: 1px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *, ::after, ::before {
+    border-color: var(--color-gray-200); /* Default border color */
   }
-}
+  
+  h1, h2, h3 {
+    @apply font-[family-name:--font-heading] font-bold tracking-tight;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Memastikan input memiliki border default yang terlihat */
+  input, select, textarea {
+    @apply border border-gray-300 bg-white;
+  }
+  
+  /* Fokus ring khusus untuk LaparHub */
+  input:focus, select:focus {
+    @apply border-hungry-red ring-2 ring-hungry-red/20 outline-none transition-all;
+  }
 }

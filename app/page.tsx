@@ -1,65 +1,143 @@
-import Image from "next/image";
+import { Metadata } from 'next';
+import LeadForm from "./components/LeadForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from 'next/image'
+import { faStar, faBolt, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: 'LaparHub | 50% OFF Premium Steak Experience in Jakarta',
+  description: 'Join LaparHub and get an instant 50% discount voucher for Jakarta\'s top-rated steakhouses. Personalized menu recommendations powered by Gemini AI.',
+  keywords: ['Steak Jakarta', 'Promo Steak', 'LaparHub', 'Dining Discount', 'Premium Steakhouse'],
+  authors: [{ name: 'LaparHub Team' }],
+  viewport: 'width=device-width, initial-scale=1',
+  robots: 'index, follow',
+  
+  // Open Graph (Untuk Facebook, Instagram, WhatsApp)
+  openGraph: {
+    type: 'website',
+    url: 'https://laparhub.com',
+    title: 'LaparHub | Get Your 50% Steak Voucher',
+    description: 'Claim your exclusive 50% discount at Jakarta\'s finest steakhouses. AI-powered menu matching inside!',
+    siteName: 'LaparHub',
+    // images: [
+    //   {
+    //     url: 'https://laparhub.com/og-image.jpg', // Ganti dengan URL gambar promo Anda
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'LaparHub Promo Steak 50%',
+    //   },
+    // ],
+  },
+
+  // Twitter Card
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LaparHub | Premium Steak Experience',
+    description: 'Get 50% OFF your favorite steak in Jakarta. Instant delivery to your inbox.',
+    // images: ['https://laparhub.com/twitter-image.jpg'], // Ganti dengan URL gambar promo Anda
+  },
+
+  // Icon & Theme Color
+  icons: {
+    icon: '/LaparHub.ico',
+  },
+  themeColor: '#D71921', // Warna hungryRed Anda
+};
+
+export function StructuredData() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "OfferCatalog",
+    "name": "LaparHub Steak Lead Magnet",
+    "description": "50% Discount for Premium Steakhouses in Jakarta",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Steakhouse Discount Voucher"
+        },
+        "priceCurrency": "IDR",
+        "price": "0",
+        "availability": "https://schema.org/InStock"
+      }
+    ]
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
   );
+}
+
+export default function LaparHubLanding() {
+  return (<>
+    <StructuredData/>
+    <main className="min-h-screen bg-hungry-gray">
+      {/* Hero Section */}
+      <section className="bg-hungry-dark text-white py-24 px-6 relative">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <div className="inline-flex items-center gap-2 bg-hungry-red/10 text-hungry-red px-4 py-1.5 rounded-full border border-hungry-red/20 mb-6">
+              <FontAwesomeIcon icon={faBolt} />
+              <span className="font-bold tracking-widest uppercase text-xs">Limited Offer</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold mt-4 mb-6 leading-tight">
+              Jakarta's Finest Steak, <span className="text-hungry-red">Half the Price.</span>
+            </h1>
+            <p className="text-gray-400 text-xl mb-10 leading-relaxed max-w-lg">
+              Unlock a 50% discount and get AI-driven menu recommendations at our exclusive partner steakhouses.
+            </p>
+            
+            <div className="flex items-center gap-4">
+              <div className="flex -space-x-3">
+                {[1, 2, 3, 4].map(i => (
+                  <div key={i} className="w-12 h-12 rounded-full border-4 border-hungry-dark bg-gray-500 overflow-hidden shadow-xl">
+                    <Image
+                      className="rounded-full"
+                      src={`https://i.pravatar.cc/300?u=${i}`}
+                      width={300}
+                      height={300}
+                      alt=""
+                    />
+                  </div>
+                ))}
+              </div>
+              <p className="text-sm text-gray-300 font-medium italic">Join 2,000+ happy diners</p>
+            </div>
+          </div>
+
+          <div id="lead-form-container">
+            {/* The component handles everything inside */}
+            <LeadForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Value Proposition */}
+      <section className="py-24 max-w-6xl mx-auto px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl text-hungry-dark mb-4">Why Sign Up Now?</h2>
+          <div className="w-20 h-1.5 bg-hungry-red mx-auto" />
+        </div>
+        <div className="grid md:grid-cols-3 gap-10">
+          {[
+            { icon: faBolt, title: "Instant Voucher", desc: "Your 50% promo code lands in your inbox the second you hit submit." },
+            { icon: faStar, title: "Curated Selection", desc: "Exclusive access to top-tier steakhouses with 4.5+ verified ratings." },
+            { icon: faUtensils, title: "Smart Matching", desc: "Gemini AI suggests the best dishes based on your preferred cut and doneness." }
+          ].map((item, idx) => (
+            <div key={idx} className="group p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
+              <div className="w-14 h-14 bg-hungry-gray group-hover:bg-hungry-red group-hover:text-white text-hungry-red rounded-xl flex items-center justify-center text-xl mb-6 transition-colors">
+                <FontAwesomeIcon icon={item.icon} />
+              </div>
+              <h3 className="text-2xl mb-3 text-hungry-dark">{item.title}</h3>
+              <p className="text-gray-500 leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
+  </>);
 }
