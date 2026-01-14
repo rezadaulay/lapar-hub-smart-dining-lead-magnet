@@ -10,6 +10,10 @@ The goal of this project is to demonstrate the integration of modern frontend en
 
 Traditional lead magnets often feel generic. **LaparHub** solves this by using AI to provide instant, personalized value. Instead of just a "50% off" voucher, the user receives a tailored dining insight based on their specific steak preferences, significantly increasing the perceived value and the likelihood of a restaurant visit.
 
+### 🤖 Automation Workflow
+
+![n8n Workflow Screenshoot](/public/n8n-workflow.png)
+
 ### Key Technical Features:
 
 * **Encapsulated Logic:** A self-contained `LeadForm` component that manages its own states (Idle, Submitting, Success).
