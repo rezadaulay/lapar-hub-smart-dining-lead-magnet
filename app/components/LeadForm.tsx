@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faEnvelope, faUtensils, faFire, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { submitLeadAction } from "@/app/actions/lead"; // Import action
 
 type FormData = {
   name: string;
@@ -27,28 +28,17 @@ export default function LeadForm() {
     const submittedData = Object.fromEntries(formData.entries()) as FormData;
 
     try {
-      if (!webhookUrl) {
-        throw new Error("N8N Webhook URL is not defined in environment variables.");
+      // Panggil Server Action sebagai ganti fetch langsung
+      const result = await submitLeadAction(submittedData);
+
+      if (result.success) {
+        setAiInsight(result.aiInsight || "Enjoy your premium steak experience!");
+        setData(submittedData);
+        
+        setStatus("success");
+      } else {
+        throw new Error(result.error);
       }
-      if (!apiKey) {
-        throw new Error("N8N Webhook API Key is not defined in environment variables.");
-      }
-      // 1. Send data to n8n Webhook
-      const response = await fetch(webhookUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'X-N8N-API-KEY': apiKey },
-        body: JSON.stringify(submittedData),
-      });
-
-      if (!response.ok) throw new Error("Network response was not ok");
-
-      // Optional: Wait for n8n/Open if you want to display 
-      const result = await response.json();
-      const insight = result?.data?.aiInsight || "Enjoy your premium steak experience!";
-      setAiInsight(insight);
-
-      setData(submittedData);
-      setStatus("success");
     } catch (error) {
       console.error("Submission failed", error);
       setStatus("idle");
