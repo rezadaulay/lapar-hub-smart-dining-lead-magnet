@@ -6,7 +6,7 @@ import { faStar, faBolt, faUtensils } from "@fortawesome/free-solid-svg-icons";
 
 export const metadata: Metadata = {
   title: 'LaparHub | 50% OFF Premium Steak Experience in Jakarta',
-  description: 'Join LaparHub and get an instant 50% discount voucher for Jakarta\'s top-rated steakhouses. Personalized menu recommendations powered by Gemini AI.',
+  description: 'Join LaparHub and get an instant 50% discount voucher for Jakarta\'s top-rated steakhouses. Personalized menu recommendations powered by Open AI.',
   keywords: ['Steak Jakarta', 'Promo Steak', 'LaparHub', 'Dining Discount', 'Premium Steakhouse'],
   authors: [{ name: 'LaparHub Team' }],
   viewport: 'width=device-width, initial-scale=1',
@@ -126,7 +126,7 @@ export default function LaparHubLanding() {
           {[
             { icon: faBolt, title: "Instant Voucher", desc: "Your 50% promo code lands in your inbox the second you hit submit." },
             { icon: faStar, title: "Curated Selection", desc: "Exclusive access to top-tier steakhouses with 4.5+ verified ratings." },
-            { icon: faUtensils, title: "Smart Matching", desc: "Gemini AI suggests the best dishes based on your preferred cut and doneness." }
+            { icon: faUtensils, title: "Smart Matching", desc: "Open AI suggests the best dishes based on your preferred cut and doneness." }
           ].map((item, idx) => (
             <div key={idx} className="group p-8 bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300">
               <div className="w-14 h-14 bg-hungry-gray group-hover:bg-hungry-red group-hover:text-white text-hungry-red rounded-xl flex items-center justify-center text-xl mb-6 transition-colors">

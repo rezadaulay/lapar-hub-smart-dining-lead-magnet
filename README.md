@@ -2,7 +2,7 @@
 
 This repository is a personal initiative and technical project developed for the **Marketing React Developer** position at **HungryHub**.
 
-The goal of this project is to demonstrate the integration of modern frontend engineering (Next.js & Tailwind CSS 4) with marketing automation (n8n & Gemini AI) to create a high-converting, personalized lead generation engine.
+The goal of this project is to demonstrate the integration of modern frontend engineering (Next.js & Tailwind CSS 4) with marketing automation (n8n & Open AI) to create a high-converting, personalized lead generation engine.
 
 ---
 
@@ -14,7 +14,7 @@ Traditional lead magnets often feel generic. **LaparHub** solves this by using A
 
 * **Encapsulated Logic:** A self-contained `LeadForm` component that manages its own states (Idle, Submitting, Success).
 * **Marketing Automation:** Seamless integration with **n8n** via secure webhooks and API keys.
-* **AI Personalization:** Real-time data processing using **Gemini AI** to return custom menu recommendations.
+* **AI Personalization:** Real-time data processing using **Open AI** to return custom menu recommendations.
 * **SEO Optimized:** Fully configured Metadata API, OpenGraph tags for social sharing (Meta Ads ready), and JSON-LD structured data.
 
 ---

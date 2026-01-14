@@ -42,7 +42,7 @@ export default function LeadForm() {
 
       if (!response.ok) throw new Error("Network response was not ok");
 
-      // Optional: Wait for n8n/Gemini if you want to display 
+      // Optional: Wait for n8n/Open if you want to display 
       const result = await response.json();
       const insight = result?.data?.aiInsight || "Enjoy your premium steak experience!";
       setAiInsight(insight);
