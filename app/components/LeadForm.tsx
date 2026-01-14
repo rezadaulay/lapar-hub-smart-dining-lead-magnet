@@ -13,21 +13,38 @@ type FormData = {
 export default function LeadForm() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [data, setData] = useState<FormData | null>(null);
+  const [aiInsight, setAiInsight] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
 
+    // Retrieve the Webhook URL from ENV
+    const webhookUrl = process.env.NEXT_PUBLIC_N8N_WEBHOOK_URL;
+    const apiKey = process.env.NEXT_PUBLIC_N8N_WEBHOOK_API_KEY;
+
     const formData = new FormData(e.currentTarget);
     const submittedData = Object.fromEntries(formData.entries()) as FormData;
 
     try {
+      if (!webhookUrl) {
+        throw new Error("N8N Webhook URL is not defined in environment variables.");
+      }
+      if (!apiKey) {
+        throw new Error("N8N Webhook API Key is not defined in environment variables.");
+      }
       // 1. Send data to n8n Webhook
-      // await fetch('https://your-n8n-instance.com/webhook/laparhub', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(submittedData),
-      // });
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-N8N-API-KEY': apiKey },
+        body: JSON.stringify(submittedData),
+      });
+
+      if (!response.ok) throw new Error("Network response was not ok");
+
+      // Optional: Wait for n8n/Gemini if you want to display 
+      const result = await response.json();
+      setAiInsight(result.data.aiInsight);
 
       // 2. Artificial delay to simulate "AI Processing"
       await new Promise((res) => setTimeout(res, 2500));
@@ -53,7 +70,8 @@ export default function LeadForm() {
         </p>
         <div className="p-5 bg-hungry-gray rounded-xl border-l-4 border-hungry-red italic text-sm text-gray-700">
           <span className="font-bold text-hungry-red block not-italic mb-1 tracking-wide uppercase text-xs">AI Insight:</span>
-          "Since you prefer {data.steak} served {data.doneness}, we recommend pairing it with a rich Béarnaise sauce and a glass of full-bodied Malbec."
+          {/* "Since you prefer {data.steak} served {data.doneness}, we recommend pairing it with a rich Béarnaise sauce and a glass of full-bodied Malbec." */}
+          { aiInsight }
         </div>
         <button 
           onClick={() => setStatus("idle")} 
