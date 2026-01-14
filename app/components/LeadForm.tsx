@@ -44,11 +44,9 @@ export default function LeadForm() {
 
       // Optional: Wait for n8n/Gemini if you want to display 
       const result = await response.json();
-      setAiInsight(result.data.aiInsight);
+      const insight = result?.data?.aiInsight || "Enjoy your premium steak experience!";
+      setAiInsight(insight);
 
-      // 2. Artificial delay to simulate "AI Processing"
-      await new Promise((res) => setTimeout(res, 2500));
-      
       setData(submittedData);
       setStatus("success");
     } catch (error) {
@@ -122,12 +120,12 @@ export default function LeadForm() {
 
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block text-sm font-bold mb-1.5 text-gray-700">Favorite Cut</label>
+            <label className="block text-sm font-bold mb-1.5 text-gray-700" htmlFor="steak-select">Favorite Cut</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 pointer-events-none">
                 <FontAwesomeIcon icon={faUtensils} size="sm" />
               </span>
-              <select name="steak" disabled={status === "submitting"} className="w-full pl-10 pr-3 py-3 bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-hungry-red appearance-none">
+              <select name="steak" id="steak-select" disabled={status === "submitting"} className="w-full pl-10 pr-3 py-3 bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-hungry-red appearance-none">
                 <option>Juicy Ribeye</option>
                 <option>Lean Sirloin</option>
                 <option>Tender Fillet Mignon</option>
@@ -135,12 +133,12 @@ export default function LeadForm() {
             </div>
           </div>
           <div>
-            <label className="block text-sm font-bold mb-1.5 text-gray-700">Doneness</label>
+            <label className="block text-sm font-bold mb-1.5 text-gray-700" htmlFor="doneness-select">Doneness</label>
             <div className="relative">
               <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-400 pointer-events-none">
                 <FontAwesomeIcon icon={faFire} size="sm" />
               </span>
-              <select name="doneness" disabled={status === "submitting"} className="w-full pl-10 pr-3 py-3 bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-hungry-red appearance-none">
+              <select name="doneness" id="doneness-select" disabled={status === "submitting"} className="w-full pl-10 pr-3 py-3 bg-white border border-gray-300 rounded-lg outline-none focus:ring-2 focus:ring-hungry-red appearance-none">
                 <option>Medium Rare</option>
                 <option>Medium</option>
                 <option>Well Done</option>
@@ -155,12 +153,12 @@ export default function LeadForm() {
           className="w-full bg-hungry-red text-white font-bold py-4 rounded-lg hover:bg-red-700 transition-all transform active:scale-95 shadow-lg shadow-red-200 disabled:bg-gray-400 disabled:shadow-none"
         >
           {status === "submitting" ? (
-            <span className="flex items-center justify-center gap-2">
+            <span className="flex items-center justify-center gap-2" id="loading-info">
               <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              AI processing...
+              <span>AI processing...</span>
             </span>
           ) : "CLAIM MY 50% VOUCHER NOW"}
         </button>
