@@ -51,8 +51,8 @@ Create a `.env.local` file in the root directory and fill in your n8n credential
 
 ```env
 # n8n Automation Settings
-NEXT_PUBLIC_N8N_WEBHOOK_URL=your_n8n_webhook_url_here
-NEXT_PUBLIC_N8N_WEBHOOK_API_KEY=your_secure_api_key_here
+N8N_WEBHOOK_URL=your_n8n_webhook_url_here
+N8N_WEBHOOK_API_KEY=your_secure_api_key_here
 
 ```
 
