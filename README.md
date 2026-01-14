@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LaparHub: Smart Dining Lead Magnet 🥩
 
-## Getting Started
+This repository is a personal initiative and technical project developed for the **Marketing React Developer** position at **HungryHub**.
 
-First, run the development server:
+The goal of this project is to demonstrate the integration of modern frontend engineering (Next.js & Tailwind CSS 4) with marketing automation (n8n & Gemini AI) to create a high-converting, personalized lead generation engine.
+
+---
+
+## 🎯 Project Objective
+
+Traditional lead magnets often feel generic. **LaparHub** solves this by using AI to provide instant, personalized value. Instead of just a "50% off" voucher, the user receives a tailored dining insight based on their specific steak preferences, significantly increasing the perceived value and the likelihood of a restaurant visit.
+
+### Key Technical Features:
+
+* **Encapsulated Logic:** A self-contained `LeadForm` component that manages its own states (Idle, Submitting, Success).
+* **Marketing Automation:** Seamless integration with **n8n** via secure webhooks and API keys.
+* **AI Personalization:** Real-time data processing using **Gemini AI** to return custom menu recommendations.
+* **SEO Optimized:** Fully configured Metadata API, OpenGraph tags for social sharing (Meta Ads ready), and JSON-LD structured data.
+
+---
+
+## 🛠 Tech Stack
+
+* **Framework:** Next.js 15 (App Router)
+* **Styling:** Tailwind CSS 4
+* **Icons:** FontAwesome
+* **Testing:** Jest & React Testing Library (RTL)
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+
+Ensure you have **Node.js 18+** installed on your machine.
+
+### 2. Installation
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone git@github.com:rezadaulay/lapar-hub-smart-dining-lead-magnet.git
+cd lapar-hub-smart-dining-lead-magnet
+npm install
+
+```
+
+### 3. Environment Variables
+
+Create a `.env.local` file in the root directory and fill in your n8n credentials. This setup ensures that your frontend can securely communicate with your automation pipeline.
+
+```env
+# n8n Automation Settings
+NEXT_PUBLIC_N8N_WEBHOOK_URL=your_n8n_webhook_url_here
+NEXT_PUBLIC_N8N_WEBHOOK_API_KEY=your_secure_api_key_here
+
+```
+
+### 4. Running the Project
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) to see the landing page.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🧪 Automated Testing
 
-## Learn More
+This project follows a strict testing protocol to ensure conversion points never break. We use **Jest** and **React Testing Library** to simulate real user interactions and network latency.
 
-To learn more about Next.js, take a look at the following resources:
+To run the test suite:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm test
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
 
-## Deploy on Vercel
+### What is covered in the tests?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+* **Form Lifecycle:** Verifies the transition from the initial form to the "AI Processing" state and finally to the "Success" UI.
+* **Network Simulation:** Mocks `fetch` with a 100ms delay to ensure the loading spinner is visible to users during API calls.
+* **Data Integrity:** Ensures that headers (including the `X-N8N-API-KEY`) are sent correctly to the automation server.
+* **Accessibility:** Validates that labels and inputs are correctly linked via IDs, supporting screen readers and high-quality UX.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📈 Marketing Insight
+
+By utilizing a **headless automation** approach (Next.js + n8n), we achieve:
+
+1. **Faster Page Loads:** No heavy third-party marketing scripts.
+2. **Data Ownership:** All lead data is sent directly to our controlled workflow.
+3. **A/B Testing Ready:** The component-based architecture allows for quick variations in copywriting or CTA designs to optimize the conversion rate (CRO).
+
+---
+
+## 👨‍💻 Author
+
+**Reza** *Full-stack Developer & Digital Marketer based in Medan, Indonesia.*
